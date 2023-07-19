@@ -1,11 +1,11 @@
 const express=require("express");
 const router=express.Router();
 const {Comment}=require("../models/commentSchema");
-const {createComment} = require("../controllers/commentController")
+const {createComment,getComment} = require("../controllers/commentController")
 
 //router.get('/',getPosts)
 
-//router.get('/:id',getPost)
+router.get('/:id',getComment)
 
 router.post('/create',createComment)
 
