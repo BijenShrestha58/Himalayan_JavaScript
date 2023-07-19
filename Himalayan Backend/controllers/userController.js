@@ -87,8 +87,13 @@ function validateUser(user){
         citizenshipNumber: Joi.string().required(),
         DOB: Joi.string().required(),
         wardNumber: Joi.string().required(),
+<<<<<<< HEAD
         gender: Joi.string().required(),   
         posts: Joi.optional()     
+=======
+        gender: Joi.string().required(),
+        posts: Joi.optional()
+>>>>>>> origin/aryanBackend
     })
     return schema.validate(user)
 }
