@@ -6,6 +6,7 @@ import { Nav } from "../components/common/nav";
 import addPost from "../components/modules/addpost";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { PostDisplay } from "../components/modules/postdisplay";
 
 export const Home = () => {
   const [results, setResults] = useState([]);
@@ -31,6 +32,17 @@ export const Home = () => {
     setRegisterIsVisible(true);
   };
 
+  const mappedData = results.map((results) => ({
+    id: results._id,
+    title: results.content,
+    upvote: results.upVote,
+    downvote: results.downVote,
+    comments: results.comment,
+    numComments: results.numComments,
+    author: results.author,
+    subforum: results.subForum,
+  }));
+
   return (
     <>
       <Nav
@@ -44,21 +56,20 @@ export const Home = () => {
           <h1>Welcome to our Website!</h1>
           <p>Discover amazing content and connect with others.</p>
         </div>
-
         <addPost />
 
-        {results.map((results) => (
+    
           <PostCard
-          id={results._id}
-            title={results.content}
-            upvote={results.upVote}
-            downvote={results.downVote}
-            comments={results.comment}
-            numComments={results.numComments}
-            author={results.author}
-            subforum={results.subForum}
+            id={mappedData.id}
+            title={mappedData.content}
+            upvote={mappedData.upVote}
+            downvote={mappedData.downVote}
+            comments={mappedData.comment}
+            numComments={mappedData.numComments}
+            author={mappedData.author}
+            subforum={mappedData.subForum}
           />
-        ))}
+       
         <LoginForm
           open={loginIsVisible}
           close={() => {
