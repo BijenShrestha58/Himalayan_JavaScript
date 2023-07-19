@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import  HomeLayout from "./layouts/HomeLayout";
+import { Route, Routes } from "react-router";
+import {Nav} from "./components/common/nav";
 
-function App() {
+const App = () => {
+  const routes = [
+    { path: "", element: <HomeLayout /> },
+    { path: "home", element: <HomeLayout /> },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Nav/>
+      <Routes>
+        {routes.map((v, key) => (
+          <Route path={v.path} element={v.element} key={key}></Route>
+        ))}
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
