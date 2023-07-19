@@ -6,7 +6,7 @@ import Layout from './pages/layout';
 
 const App = () => {
   const routes = [
-    { path: "", element: <Home /> },
+    { path: "", element: <Home/> },
     { path: "home", element: <Home/> },
     // { path: "forums", element: <ForumLayout /> },
     // { path: "announcements", element: <AnnouncementLayout /> },
