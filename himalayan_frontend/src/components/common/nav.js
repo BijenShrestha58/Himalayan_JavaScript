@@ -1,8 +1,7 @@
-
+import { NavLink } from "react-router-dom";
 export const Nav=()=>{
     return(
     <div className="nav">
-
         <div className="nav-items">
             <button className="nav-item">Home</button>
             <button className="nav-item">Forum</button>
