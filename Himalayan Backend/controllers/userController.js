@@ -52,7 +52,8 @@ function validateUser(user){
         citizenshipNumber: Joi.string().required(),
         DOB: Joi.string().required(),
         wardNumber: Joi.string().required(),
-        gender: Joi.string().required()
+        gender: Joi.string().required(),
+        posts: Joi.optional()
     })
     return schema.validate(user)
 }

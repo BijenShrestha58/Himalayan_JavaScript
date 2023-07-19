@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-const postSchema=require('../models/postSchema');
 const Joi = require('joi')
 
 const User= mongoose.model('User',new mongoose.Schema({
@@ -56,7 +55,7 @@ const User= mongoose.model('User',new mongoose.Schema({
         required:true,
         enum:["Male","Female","Other"]
     },
-    posts:[postSchema]
+    posts:[{type:mongoose.Schema.Types.ObjectId,ref:"Post"}]
 }))
 
 

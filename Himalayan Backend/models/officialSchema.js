@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const postSchema=require('../models/postSchema');
+const postSchema=require('../models/postSchema').schema;
 const Official= mongoose.model('Official',new mongoose.Schema({
     firstName:{
         type:String,
