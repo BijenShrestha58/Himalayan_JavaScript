@@ -8,5 +8,4 @@ const commentSchema= new mongoose.Schema({
     downVotes:Number
 },{timestamps:true})
 const Comment=mongoose.model("Comment",commentSchema)
-
 exports.Comment=Comment
