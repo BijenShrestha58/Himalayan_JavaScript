@@ -41,7 +41,7 @@ const User= mongoose.model('User',new mongoose.Schema({
         unique:true,
         trim:true
     },
-    dob:{
+    DOB:{
         type:Date,
         required:true
     },
@@ -58,19 +58,6 @@ const User= mongoose.model('User',new mongoose.Schema({
 
 }))
 
-function validateUser(user){
-    const schema = Joi.object({
-        firstName:Joi.string().min(3).max(50).required(),
-        lastName: Joi.string().min(3).max(50).required(),
-        email: Joi.email().min(3).required(),
-        password: Joi.min(6).required(),
-        phoneNumber: Joi.string().required(),
-        citizenshipNumber: Joi.string().required(),
-        DOB: Joi.date().required(),
-        wardNumber: Joi.string().required(),
-        gender: Joi.string().required()
-    })
-}
+
 
 exports.User = User;
-exports.validate = validateUser;

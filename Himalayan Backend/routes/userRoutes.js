@@ -1,38 +1,27 @@
 const express=require("express");
 const router=express.Router();
 const {User}=require("../models/userSchema");
+const {getUsers,getUser,addUser} = require('../controllers/userController')
 const Official=require("../models/officialSchema");
 
 //Get
-router.get('/',)
+router.get('/',getUsers)
 
 //post 
-router.get('/create',async (req,res)=>{
-    try {
-        
-    } catch (error) {
-        res.status(400).json({message:error.message})
-    }
-});
+router.get('/:id',getUser);
 
 //patch
-router.get('/:id',async (req,res)=>{
-    try {
-        
-    } catch (error) {
-        res.status(500).json({message:error.message})
-    }
-});
+router.post('/',addUser);
 
 
-//delete
-router.get('/:id',async (req,res)=>{
-    try {
+// //delete
+// router.get('/:id',async (req,res)=>{
+//     try {
         
-    } catch (error) {
-        res.status(500).json({message:error.message})
-    }
-})
+//     } catch (error) {
+//         res.status(500).json({message:error.message})
+//     }
+// })
 
 
 
