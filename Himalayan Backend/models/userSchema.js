@@ -4,6 +4,13 @@ const userSchema=new mongoose.Schema({
     firstName:String,
     middleName:String,
     lastName:String,
+    email:{
+        type:String,
+        required: true,
+        unique: true,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address.']
+    },
+    password:String,
     phoneNumber:Number,
     citizenshipNumber:Number,
     dob:Date,
@@ -12,4 +19,4 @@ const userSchema=new mongoose.Schema({
 
 })
 
-module.exports=mongoose.model("players",playerSchema);
+module.exports=mongoose.model("User",playerSchema);
