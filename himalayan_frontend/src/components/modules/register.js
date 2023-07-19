@@ -1,6 +1,6 @@
 import close from "../../assets/close.png";
 
-export const LoginForm = (props) => {
+export const RegisterForm = (props) => {
   return (
     props.open && (
       <div className="login">
@@ -8,7 +8,7 @@ export const LoginForm = (props) => {
         <div className="login-box slide-in">
         <div className="close" onClick={props.close}><img src={close}/></div>
           <div class="title">
-            <h1>Login</h1>
+            <h1>Register</h1>
           </div>
           <form onSubmit={props.submit}>
             <div class="inputs">
@@ -41,7 +41,6 @@ export const LoginForm = (props) => {
             </div>
             <button>Submit</button>
           </form>
-          <br/>Don't Have An Account? <span onClick={props.linkclick}>Register here</span>
         </div>
       </div>
     )
