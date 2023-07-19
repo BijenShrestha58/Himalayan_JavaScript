@@ -1,9 +1,9 @@
 const express=require("express");
 const router=express.Router();
-const {Post}=require("../models/postSchema");
-const {createPost} = require("../controllers/postController")
+//const {Post}=require("../models/postSchema");
+const {createPost,getPosts} = require("../controllers/postController")
 
-//router.get('/',getPosts)
+router.get('/',getPosts)
 
 //router.get('/:id',getPost)
 

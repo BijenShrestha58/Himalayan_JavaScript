@@ -11,4 +11,16 @@ const createPost =async (req,res)=>{
     }
 }
 
+const getPosts = async (req,res)=>{
+    console.log('here')
+    try{
+        const post =await Post.find()
+        console.log(post)
+        res.send(post)
+    }catch(error){
+        res.status(500).json({message:error.message})
+    }
+}
+
 exports.createPost = createPost
+exports.getPosts = getPosts
