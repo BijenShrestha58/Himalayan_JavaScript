@@ -1,7 +1,9 @@
 import PostCard from "../components/partials/card";
+
 import { LoginForm } from "../components/modules/login";
 import { RegisterForm } from "../components/modules/register";
 import { Nav } from "../components/common/nav";
+import addPost from "../components/modules/addpost";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -9,7 +11,6 @@ export const Home = () => {
   const [results, setResults] = useState([]);
 
   const [loginIsVisible, setLoginIsVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     // Fetch data using Axios GET request
@@ -24,15 +25,6 @@ export const Home = () => {
       });
   }, []);
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleSubmit = () => {
-    // Handle the logic for submitting the input value here
-    console.log("Submitted:", inputValue);
-    setInputValue("");
-  };
   const [registerIsVisible, setRegisterIsVisible] = useState(false);
   const registerclickHandler = () => {
     setLoginIsVisible(false);
@@ -46,38 +38,25 @@ export const Home = () => {
           setLoginIsVisible(true);
         }}
       />
+
       <div className="home">
         <div className="banner">
           <h1>Welcome to our Website!</h1>
           <p>Discover amazing content and connect with others.</p>
         </div>
 
-        <div className="whats-on-your-mind">
-          <textarea
-            rows="3"
-            placeholder="What's on your mind?"
-            value={inputValue}
-            onChange={handleChange}
-            className="tweet-input"
-          />
-          <button
-            onClick={handleSubmit}
-            className="post-button"
-            disabled={!inputValue.trim()}
-          >
-            Post
-          </button>
-        </div>
+        <addPost />
 
         {results.map((results) => (
           <PostCard
+          id={results._id}
             title={results.content}
-            upvote={results.upVotes}
+            upvote={results.upVote}
             downvote={results.downVote}
             comments={results.comment}
             numComments={results.numComments}
             author={results.author}
-            subforum={results.subforum}
+            subforum={results.subForum}
           />
         ))}
         <LoginForm
