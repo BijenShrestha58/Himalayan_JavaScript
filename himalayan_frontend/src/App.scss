@@ -1,5 +1,5 @@
 *{
-    color:white;
+    color: #151515;
 }
 .nav{
     width: 100vw;
@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     padding: 0 5vw;
+    position: sticky;
 
     .nav-items{
         display:flex;

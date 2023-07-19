@@ -1,5 +1,6 @@
 import './App.scss';
 import  HomeLayout from "./layouts/HomeLayout";
+import ForumCard from './components/partials/card';
 import { Route, Routes } from "react-router";
 import {Nav} from "./components/common/nav";
 
