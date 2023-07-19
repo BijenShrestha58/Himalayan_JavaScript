@@ -1,16 +1,10 @@
 const express=require("express");
 const router=express.Router();
-const User=require("../models/userSchema");
+const {User}=require("../models/userSchema");
 const Official=require("../models/officialSchema");
 
 //Get
-router.get('/',async (req,res)=>{
-try {
-    
-} catch (error) {
-    res.status(400).json({message:error.message})
-}
-})
+router.get('/',)
 
 //post 
 router.get('/create',async (req,res)=>{

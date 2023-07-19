@@ -1,18 +1,21 @@
 require('dotenv').config();
 const express=require("express");
-const app=express();
-
-//convert into json format
-app.use(express.json());
 const mongoose=require("mongoose");
-
-mongoose.connect(process.env.DATABASE_URL);
-const db=mongoose.connection;
-db.on('error',(error)=>{console.log(error);})
-db.once('open',()=>{console.log("Connected to DataBase")})
-
 const userRoutes=require("./routes/userRoutes")
 
-app.use('/users',userRoutes);
+const app=express();
 
-app.listen(3000,()=>{console.log("Server Initiated!.")});
+// Setup connections to database
+mongoose.connect(process.env.DATABASE_URL)
+    .then(()=>console.log('Connected to MongoDB...'))
+    .catch(err => console.log('Could not connect to MongoDB...',err))
+
+// Convert request into JSON format
+app.use(express.json());    
+
+app.use('/api/users',userRoutes);
+
+const port = process.env.PORT || 3000
+app.listen(port,()=>{
+    console.log(`Listening to port ${port}...`)
+});
