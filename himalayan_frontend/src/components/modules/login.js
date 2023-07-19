@@ -1,12 +1,10 @@
 import close from "../../assets/close.png";
+import { DialogBox } from "../common/dialog-box";
 
 export const LoginForm = (props) => {
   return (
-    props.open && (
-      <div className="login">
-        <div className="login-backdrop" onClick={props.close}></div>
-        <div className="login-box slide-in">
-        <div className="close" onClick={props.close}><img src={close}/></div>
+    <>
+      <DialogBox open={props.open} close={props.close}>
           <div class="title">
             <h1>Login</h1>
           </div>
@@ -42,8 +40,7 @@ export const LoginForm = (props) => {
             <button>Submit</button>
           </form>
           <br/>Don't Have An Account? <span onClick={props.linkclick}>Register here</span>
-        </div>
-      </div>
+      </DialogBox>
+      </>
     )
-  );
 };

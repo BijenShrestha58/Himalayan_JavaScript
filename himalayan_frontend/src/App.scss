@@ -64,7 +64,7 @@
 
 }
 
-.login {
+.dialog-box {
     position: fixed;
     top: 0;
     left: 0;
@@ -74,7 +74,7 @@
     z-index: 9999;
     align-items: flex-start;
     justify-content: center;
-    .login-backdrop {
+    .dialog-box-backdrop {
       background-color: rgba(0, 0, 0, 0.61);
       transition: 0.5s;
       height: 100%;
@@ -87,7 +87,7 @@
         backdrop-filter: blur(3px);
       }
     }
-    .login-box {
+    .dialog-box {
       position: relative;
       padding: 16px;
       border-radius: 8px;
