@@ -6,12 +6,17 @@ const styles = {
   };
 export const RegisterForm = (props) => {
     const [formData, setFormData] = useState({
-        first_name: "",
-        last_name: "",
+        firstName: "",
+        middleName:"",
+        lastName: "",
         email: "",
-        phone_number: "",
+        phoneNumber: "",
         password: "",
-        re_password: "",
+        // rePassword: "",
+        citizenshipNumber:"123124214",
+        DOB:"2001/01/01",
+        gender:"Male",
+        wardNumber:"13"
       });
     
       const formHandler = (e) => {
@@ -28,41 +33,41 @@ export const RegisterForm = (props) => {
   return (
     props.open && (
         <DialogBox open={props.open} close={props.close} styles={styles}>
-          <div class="title">
+          <div className="title">
             <h1>Register</h1>
           </div>
           <form onSubmit={submitForm}>
-            <div class="inputs">
-            <div class="box">
-                <label for="first_name" class="icon material-icons">
+            <div className="inputs">
+            <div className="box">
+                <label htmlFor="first_name" className="icon material-icons">
                   person
                 </label>
                 <input
                   type="text"
                   placeholder="First Name"
                   id="first_name"
-                  name="first_name"
-                  class="text"
+                  name="firstName"
+                  className="text"
                   required
-                  onchange={formHandler}
+                  onChange={formHandler}
                 />
               </div>
-              <div class="box">
-                <label for="last_name" class="icon material-icons">
+              <div className="box">
+                <label htmlFor="last_name" className="icon material-icons">
                   person
                 </label>
                 <input
                   type="text"
                   placeholder="Last name"
                   id="last_name"
-                  name="last_name"
-                  class="text"
+                  name="lastName"
+                  className="text"
                   required
-                  onchange={formHandler}
+                  onChange={formHandler}
                 />
               </div>
-              <div class="box">
-                <label for="email" class="icon material-icons">
+              <div className="box">
+                <label htmlFor="email" className="icon material-icons">
                   mail
                 </label>
                 <input
@@ -70,53 +75,53 @@ export const RegisterForm = (props) => {
                   placeholder="E-mail"
                   id="email"
                   name="email"
-                  class="text"
+                  className="text"
                   required
-                  onchange={formHandler}
+                  onChange={formHandler}
                 />
               </div>
-              <div class="box">
-                <label for="phone_number" class="icon material-icons">
+              <div className="box">
+                <label htmlFor="phone_number" className="icon material-icons">
                   phone
                 </label>
                 <input
                   type="text"
                   placeholder="Phone Number"
                   id="phone_number"
-                  name="phone_number"
-                  class="text"
+                  name="phoneNumber"
+                  className="text"
                   required
-                  onchange={formHandler}
+                  onChange={formHandler}
                 />
               </div>
-              <div class="box">
-                <label for="password" class="icon material-icons">
+              <div className="box">
+                <label htmlFor="password" className="icon material-icons">
                   key
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Password"
                   id="password"
                   name="password"
-                  class="text"
+                  className="text"
                   required
-                  onchange={formHandler}
+                  onChange={formHandler}
                 />
               </div>
-              <div class="box">
-                <label for="re-password" class="icon material-icons">
+              {/* <div className="box">
+                <label htmlFor="re-password" className="icon material-icons">
                   key
                 </label>
                 <input
                   type="password"
                   placeholder="Re-enter Password"
-                  name="re-password"
+                  name="rePassword"
                   id="re-password"
-                  class="text"
+                  className="text"
                   required
-                  onchange={formHandler}
+                  onChange={formHandler}
                 />
-              </div>
+              </div> */}
             </div>
             <button>Submit</button>
           </form>
