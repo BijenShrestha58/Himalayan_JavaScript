@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-
+const postSchema=require('../models/postSchema');
 const Official= mongoose.model('Official',new mongoose.Schema({
     firstName:{
         type:String,
@@ -53,12 +53,12 @@ const Official= mongoose.model('Official',new mongoose.Schema({
         required:true,
         enum:["Male","Female","Other"]
     },
-    post:{
+    position:{
         type:String,
         required:true,
         enum:["Mayor","Ward Officer"]
-    }
-
+    },
+    posts:[postSchema]
 }))
 
 exports.official = Official;
