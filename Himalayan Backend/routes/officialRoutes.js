@@ -1,20 +1,17 @@
 const express=require("express");
 const router=express.Router();
 const {User}=require("../models/userSchema");
-const {getUsers,getUser,registerUser,loginUser} = require('../controllers/userController')
+const {getOfficials,getOfficial,addOfficial} = require('../controllers/userController')
 const {Official}=require("../models/officialSchema");
 
-// Get a list of all user objects
-router.get('/',getUsers)
+//Get
+router.get('/',getOfficials)
 
-// Get a user object from userID 
-router.get('/:id',getUser)
+//post 
+router.get('/:id',getOfficial);
 
-// Register user
-router.post('/register',registerUser)
-
-// Login with credentials
-router.post('/login',loginUser)
+//patch
+router.post('/',addOfficial);
 
 
 // //delete
