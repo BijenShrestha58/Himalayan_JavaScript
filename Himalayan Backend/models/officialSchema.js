@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const User= mongoose.model('User',new mongoose.Schema({
+const Official= mongoose.model('Official',new mongoose.Schema({
     firstName:{
         type:String,
         required:true,
@@ -53,7 +53,12 @@ const User= mongoose.model('User',new mongoose.Schema({
         required:true,
         enum:["Male","Female","Other"]
     },
+    post:{
+        type:String,
+        required:true,
+        enum:["Mayor","Ward Officer"]
+    }
 
 }))
 
-exports.user = User;
+exports.official = Official;
