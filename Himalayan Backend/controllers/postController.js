@@ -11,5 +11,4 @@ const createPost =async (req,res)=>{
     }
 }
 
-exports.Post = Post
 exports.createPost = createPost

@@ -1,8 +1,8 @@
 const Joi = require('joi')
 const {Comment} = require('../models/commentSchema')
 
-const createComment =async (req,res)=>{
-    try{
+const createComment = async (req,res)=>{
+    try{        
         let comment = new Comment(req.body)
         comment = await comment.save()
         res.send(comment)
@@ -11,5 +11,5 @@ const createComment =async (req,res)=>{
     }
 }
 
-exports.Comment = Comment
+
 exports.createComment = createComment
