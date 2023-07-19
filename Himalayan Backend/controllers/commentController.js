@@ -11,5 +11,5 @@ const createComment =async (req,res)=>{
     }
 }
 
-exports.Comment = Comment
+
 exports.createComment = createComment

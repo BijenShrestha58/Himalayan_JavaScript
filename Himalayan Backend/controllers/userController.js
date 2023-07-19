@@ -26,9 +26,9 @@ const registerUser = async (req,res)=>{
         if(error) return res.status(400).send(error.details[0].message)
 
         let user = new User(req.body)
-        //const salt = await bcrypt.genSalt(10);
-        //const hashPassword = await bcrypt.hash(password,salt)
-        //user.password = hashPassowrd
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(user.password,salt)
+        user.password = hashPassword
 
         user = await user.save()
         res.send(user)
