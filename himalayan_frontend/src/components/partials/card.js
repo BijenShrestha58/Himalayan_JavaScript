@@ -1,30 +1,58 @@
 import React, { useState } from 'react';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
-const ForumPostCard = ({ title,  author, subforum, numComments, score }) => {
-  const [voteCount, setVoteCount] = useState(score);
+const PostCard = ({ title, upvotes, downvotes, comments }) => {
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
 
+  const handleUpvote = () => {
+    if (isUpvoted) {
+      setIsUpvoted(false);
+    } else {
+      setIsUpvoted(true);
+      setIsDownvoted(false);
+    }
+  };
+
+  const handleDownvote = () => {
+    if (isDownvoted) {
+      setIsDownvoted(false);
+    } else {
+      setIsDownvoted(true);
+      setIsUpvoted(false);
+    }
+  };
 
   return (
-    <div className="forum-post-card">
-         <div className="content">
-         <div className="upvote-icon">
-         <ThumbUpIcon/>
-         </div>
+    <div className="reddit-post-card">
+      <div className="vote">
+        <button className={`upvote ${isUpvoted ? 'active' : ''}`} onClick={handleUpvote}>
+          <ThumbUpIcon />
+        </button>
+        <span className="vote-count">{upvotes}</span>
+        <button className={`downvote ${isDownvoted ? 'active' : ''}`} onClick={handleDownvote}>
+          <ThumbDownIcon />
+        </button>
+      </div>
+      <div className="content">
         <h2 className="title">{title}</h2>
-        <div className="info">
-          <span className="author">Posted by {author}</span>
-          <span className="subforum">in {subforum}</span>
-        </div>
         <div className="stats">
-          <span className="comments">{numComments} comments</span>
-          <span className="score">{score} score</span>
+          <span className="comments">
+            <ChatBubbleIcon className="comments-icon" />
+            {comments} comments
+          </span>
+          <span className="votes">
+            <ThumbUpIcon className={`vote-icon ${isUpvoted ? 'active' : ''}`} />
+            {upvotes}{' '}
+            <ThumbDownIcon className={`vote-icon ${isDownvoted ? 'active' : ''}`} />
+            {downvotes}
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export default ForumPostCard;
+export default PostCard;
