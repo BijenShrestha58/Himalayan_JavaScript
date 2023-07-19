@@ -3,7 +3,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
-const PostCard = ({ title, upvotes, downvotes, comments }) => {
+const PostCard = ({ title, upvote, downvote, comments,numComments,author,subforum }) => {
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
 
@@ -31,7 +31,7 @@ const PostCard = ({ title, upvotes, downvotes, comments }) => {
         <button className={`upvote ${isUpvoted ? 'active' : ''}`} onClick={handleUpvote}>
           <ThumbUpIcon />
         </button>
-        <span className="vote-count">{upvotes}</span>
+        <span className="vote-count">{upvote}</span>
         <button className={`downvote ${isDownvoted ? 'active' : ''}`} onClick={handleDownvote}>
           <ThumbDownIcon />
         </button>
@@ -45,9 +45,9 @@ const PostCard = ({ title, upvotes, downvotes, comments }) => {
           </span>
           <span className="votes">
             <ThumbUpIcon className={`vote-icon ${isUpvoted ? 'active' : ''}`} />
-            {upvotes}{' '}
+            {upvote}{' '}
             <ThumbDownIcon className={`vote-icon ${isDownvoted ? 'active' : ''}`} />
-            {downvotes}
+            {downvote}
           </span>
         </div>
       </div>

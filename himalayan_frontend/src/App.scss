@@ -24,6 +24,12 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            &.active{
+                .nav-item{
+                    background-color:  rgba(0,0,0,.4);
+                    color:white;
+                }
+            }
             .nav-item{
                 margin: 0 12px;
                 background-color: rgba(0,0,0,.1);
@@ -35,7 +41,8 @@
                 font-size: 1em;
                 &:hover{
                     transition: .3s;
-                    background-color: rgba(0,0,0,.5);
+                    background-color: rgba(0,0,0,.4);
+                    color:white;
                     cursor: pointer;
                 }
             }
@@ -53,9 +60,9 @@
         right:5vw;
         &:hover{
             transition: .3s;
-            background-color: rgba(0,0,0,.5);
+            background-color: rgba(0,0,0,.4);
+            color:white;
             cursor: pointer;
-
         }
     }
 }
@@ -67,9 +74,6 @@
 
 // RedditPostCard.scss
 
-// RedditPostCard.scss
-
-// RedditPostCard.scss
 
 .reddit-post-card {
     display: flex;
@@ -173,6 +177,7 @@
 
 
 .login {
+.dialog-box-screen{
     position: fixed;
     top: 0;
     left: 0;
@@ -182,7 +187,7 @@
     z-index: 9999;
     align-items: flex-start;
     justify-content: center;
-    .login-backdrop {
+    .dialog-box-backdrop {
       background-color: rgba(0, 0, 0, 0.61);
       transition: 0.5s;
       height: 100%;
@@ -195,7 +200,7 @@
         backdrop-filter: blur(3px);
       }
     }
-    .login-box {
+    .dialog-box {
       position: relative;
       padding: 16px;
       border-radius: 8px;
@@ -209,6 +214,7 @@
       border: 1px gray solid;
       border-radius: 8px;
       box-shadow: 2px 2px 2px gray;
+    //   overflow: auto;
       .title {
         margin-bottom: 32px;
         text-align: center;
@@ -295,7 +301,7 @@
   }
 
   .slide-in {
-    animation: slide-in 0.3s ease-in-out;
+    animation: slide-in 0.3s ease-in-out ;
   }
   @keyframes slide-in {
     from {
@@ -307,7 +313,7 @@
   }
 
   
-  .banner {
+.banner {
     background-color: #54eeb8; // Your desired background color for the banner
     color: #fff; // Text color
     text-align: center;
@@ -326,48 +332,6 @@
       font-size: 18px;
     }
   }
-
-.categories {
-    background-color: #f0f2f5;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: box-shadow 0.3s ease;
-  
-    &:hover {
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-  
-    .category-title {
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 10px;
-    }
-  
-    .category-description {
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
-  
-    .category-button {
-      background-color: #0079d3;
-      color: #fff;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #005ea1;
-      }
-    }
-  }
-
 
   
 // WhatsOnYourMind.scss
@@ -418,3 +382,5 @@
     }
   }
   
+  
+}
