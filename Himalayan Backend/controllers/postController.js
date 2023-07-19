@@ -12,10 +12,10 @@ const createPost =async (req,res)=>{
 }
 
 const getPosts = async (req,res)=>{
-    console.log('here')
+    //console.log('here')
     try{
         const post =await Post.find()
-        console.log(post)
+        //console.log(post)
         res.send(post)
     }catch(error){
         res.status(500).json({message:error.message})

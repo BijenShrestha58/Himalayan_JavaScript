@@ -67,15 +67,16 @@ const loginUser = async (req,res)=>{
         })  
         
     }catch(error){
-
+        res.status(401).send(error.message)
     }
 }
 
 function validateLogin(user){
-    const schema = Joi({
+    const schema = Joi.object({
         email: Joi.string().required(),
         password: Joi.string().required()
     })
+    return schema.validate(user)
 }
 
 function validateUser(user){
