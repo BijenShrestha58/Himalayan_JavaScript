@@ -23,6 +23,12 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            &.active{
+                .nav-item{
+                    background-color:  rgba(0,0,0,.4);
+                    color:white;
+                }
+            }
             .nav-item{
                 margin: 0 12px;
                 background-color: rgba(0,0,0,.1);
@@ -34,7 +40,8 @@
                 font-size: 1em;
                 &:hover{
                     transition: .3s;
-                    background-color: rgba(0,0,0,.5);
+                    background-color: rgba(0,0,0,.4);
+                    color:white;
                     cursor: pointer;
                 }
             }
@@ -52,9 +59,9 @@
         right:5vw;
         &:hover{
             transition: .3s;
-            background-color: rgba(0,0,0,.5);
+            background-color: rgba(0,0,0,.4);
+            color:white;
             cursor: pointer;
-
         }
     }
 }
@@ -64,7 +71,7 @@
 
 }
 
-.login {
+.dialog-box-screen{
     position: fixed;
     top: 0;
     left: 0;
@@ -74,7 +81,7 @@
     z-index: 9999;
     align-items: flex-start;
     justify-content: center;
-    .login-backdrop {
+    .dialog-box-backdrop {
       background-color: rgba(0, 0, 0, 0.61);
       transition: 0.5s;
       height: 100%;
@@ -87,7 +94,7 @@
         backdrop-filter: blur(3px);
       }
     }
-    .login-box {
+    .dialog-box {
       position: relative;
       padding: 16px;
       border-radius: 8px;
@@ -101,6 +108,7 @@
       border: 1px gray solid;
       border-radius: 8px;
       box-shadow: 2px 2px 2px gray;
+    //   overflow: auto;
       .title {
         margin-bottom: 32px;
         text-align: center;
@@ -187,7 +195,7 @@
   }
 
   .slide-in {
-    animation: slide-in 0.3s ease-in-out;
+    animation: slide-in 0.3s ease-in-out ;
   }
   @keyframes slide-in {
     from {

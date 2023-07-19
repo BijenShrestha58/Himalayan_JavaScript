@@ -1,35 +1,31 @@
-import close from "../../assets/close.png";
+
 import { useState } from "react";
+import DialogBox from "../common/dialogbox";
 
 export const LoginForm = (props) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
-  // Function to handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Call the parent component's submit function and pass the form data
-    props.submit(formData);
+  const formHandler = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  // Function to handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  const submitForm = async (e) => {
+    e.preventDefault();
+    await props.submit(formData)
+ 
   };
 
   return (
     <>
       {props.open && (
-        <div className="login">
-          <div className="login-backdrop" onClick={props.close}></div>
-          <div className="login-box slide-in">
-            <div className="close" onClick={props.close}>
-              <img src={close} alt="Close" />
-            </div>
+        <DialogBox open={props.open} close={props.close}>
             <div className="title">
               <h1>Login</h1>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submitForm}>
               <div className="inputs">
                 <div className="box">
                   <label htmlFor="email" className="icon material-icons">
@@ -42,7 +38,7 @@ export const LoginForm = (props) => {
                     name="email"
                     className="text"
                     value={formData.email}
-                    onChange={handleChange}
+                    onChange={formHandler}
                     required
                   />
                 </div>
@@ -57,7 +53,7 @@ export const LoginForm = (props) => {
                     id="password"
                     className="text"
                     value={formData.password}
-                    onChange={handleChange}
+                    onChange={formHandler}
                     required
                   />
                 </div>
@@ -67,8 +63,7 @@ export const LoginForm = (props) => {
             <br />
             Don't Have An Account?{" "}
             <span onClick={props.linkClick}>Register here</span>
-          </div>
-        </div>
+          </DialogBox>
       )}
     </>
   );
