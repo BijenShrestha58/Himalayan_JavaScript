@@ -2,7 +2,7 @@ const express=require("express");
 const router=express.Router();
 const {User}=require("../models/userSchema");
 const {getUsers,getUser,registerUser,loginUser} = require('../controllers/userController')
-const {Official}=require("../models/officialSchema");
+//const {Official}=require("../models/officialSchema");
 
 // Get a list of all user objects
 router.get('/',getUsers)

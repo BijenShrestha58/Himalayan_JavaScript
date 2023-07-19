@@ -26,9 +26,9 @@ const registerUser = async (req,res)=>{
         if(error) return res.status(400).send(error.details[0].message)
 
         let user = new User(req.body)
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(password,salt)
-        user.password = hashPassowrd
+        //const salt = await bcrypt.genSalt(10);
+        //const hashPassword = await bcrypt.hash(password,salt)
+        //user.password = hashPassowrd
 
         user = await user.save()
         res.send(user)
@@ -79,7 +79,7 @@ function validateLogin(user){
 function validateUser(user){
     const schema = Joi.object({
         firstName:Joi.string().min(3).max(50).required(),
-        middleName:Joi.string().optional(),
+        middleName:Joi.string().min(0).optional(),
         lastName: Joi.string().min(3).max(50).required(),
         email: Joi.string().min(3).required(),
         password: Joi.string().min(6).required(),
@@ -87,13 +87,8 @@ function validateUser(user){
         citizenshipNumber: Joi.string().required(),
         DOB: Joi.string().required(),
         wardNumber: Joi.string().required(),
-<<<<<<< HEAD
         gender: Joi.string().required(),   
         posts: Joi.optional()     
-=======
-        gender: Joi.string().required(),
-        posts: Joi.optional()
->>>>>>> origin/aryanBackend
     })
     return schema.validate(user)
 }
@@ -102,3 +97,4 @@ exports.getUsers = getUsers
 exports.getUser = getUser
 exports.registerUser = registerUser
 exports.loginUser = loginUser
+
