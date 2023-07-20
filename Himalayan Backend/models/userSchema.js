@@ -1,7 +1,6 @@
 const mongoose=require('mongoose');
 
 const User= mongoose.model('User',new mongoose.Schema({
-    verified:{type:Boolean,default:false},
     firstName:{
         type:String,
         required:true,
@@ -55,7 +54,8 @@ const User= mongoose.model('User',new mongoose.Schema({
         required:true,
         enum:["Male","Female","Other"]
     },
-    posts:[{type:mongoose.Schema.Types.ObjectId,ref:"Post"}]
+    posts:[{type:mongoose.Schema.Types.ObjectId,ref:"Post"}],
+    verified:{type:Boolean,default:false}
 }))
 
 

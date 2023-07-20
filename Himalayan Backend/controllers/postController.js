@@ -11,10 +11,10 @@ const createPost =async (req,res)=>{
         post.wardNumber=user.wardNumber;
         await user.save();
         post =await post.save()
-        res.status(200).json(post)
+        return res.status(200).json(post)
     console.log('Post Created')
     }catch(error){
-        res.status(500).json({message:error.message})
+        return res.status(500).json({message:error.message})
     }
 }
 

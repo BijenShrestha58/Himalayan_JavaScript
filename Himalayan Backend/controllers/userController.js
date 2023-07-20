@@ -3,7 +3,6 @@ require('dotenv').config();
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
 const {User} = require('../models/userSchema');
-const mongoose  = require('mongoose');
 
 const getUsers = async (req,res)=>{
     try {
@@ -26,11 +25,7 @@ const getUser = async (req,res)=>{
 const registerUser = async (req,res)=>{
     console.log('registering...')
     try {
-        // const {error}  = validateUser(req.body)
-        // if(error) {return res.status(400).send(error.details[0].message)}
-
         let user = new User(req.body)
-        
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(user.password,salt)
         user.password = hashPassword
@@ -42,29 +37,12 @@ const registerUser = async (req,res)=>{
             res.status(200).send(user)
         }
     } catch (error) {
-        res.status(500).json({message:error.message})
+        return res.status(500).json({message:error.message})
     }
 }
 
 const sendOTPVerificationEmail=async(email,user_id)=>{
     try{
-        //const otp=`${Math.floor(1000+Math.random()*9000)}`
-        /*const transporter=nodemailer.createTransport({
-            service:"gmail",
-            port:465,
-            secure:true,
-            logger:true,
-            debug:true,
-            secureConnection:false,
-            auth:{
-                user:'aryanliviTest@gmail.com',
-                pass:'rtpdrvigdevyswyi'
-            },
-            tls:{
-                rejectUnauthorized:true
-            }
-        });
-        */
         const transporter=nodemailer.createTransport({
             host:"smtp.gmail.com",
             port:587,
@@ -142,23 +120,23 @@ function validateLogin(user){
     return schema.validate(user)
 }
 
-// function validateUser(user){
-//     const schema = Joi.object({
-//         firstName:Joi.string().min(3).max(50).required(),
-//         middleName:Joi.string().min(0).optional(),
-//         lastName: Joi.string().min(3).max(50).required(),
-//         email: Joi.string().min(3).required(),
-//         password: Joi.string().min(6).required(),
-//         phoneNumber: Joi.string().required(),
-//         citizenshipNumber: Joi.string().required(),
-//         DOB: Joi.string().required(),
-//         wardNumber: Joi.string().required(),
-//         gender: Joi.string().required(),   
-//         posts: Joi.optional(),
-//         postVotedId:Joi.optional()
-//     })
-//     return schema.validate(user)
-// }
+function validateUser(user){
+    const schema = Joi.object({
+        firstName:Joi.string().min(3).max(50).required(),
+        middleName:Joi.string().min(0).optional(),
+        lastName: Joi.string().min(3).max(50).required(),
+        email: Joi.string().min(3).required(),
+        password: Joi.string().min(6).required(),
+        phoneNumber: Joi.string().required(),
+        citizenshipNumber: Joi.string().required(),
+        DOB: Joi.string().required(),
+        wardNumber: Joi.string().required(),
+        gender: Joi.string().required(),   
+        posts: Joi.optional(),
+        postVotedId:Joi.optional()
+    })
+    return schema.validate(user)
+}
 
 exports.getUsers = getUsers
 exports.getUser = getUser

@@ -7,11 +7,9 @@ const getComment = async(req,res)=>{
     try{
         const comment = await Comment.find({postId: req.params.id})
         if(!comment){ return res.status(404).send('The Post with the given ID was not found')}
-        res.status(200).json(comment)
-        
-
+        return res.status(200).json(comment)
     }catch(error){
-        res.status(500).json({message:error.message})
+        return res.status(500).json({message:error.message})
     }
 }
 
