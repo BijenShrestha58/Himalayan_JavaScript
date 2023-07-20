@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const Official= mongoose.model('Official',new mongoose.Schema({
+    verified:{type:Boolean,default:false},
     firstName:{
         type:String,
         required:true,
