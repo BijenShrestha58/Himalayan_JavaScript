@@ -25,7 +25,7 @@ export const PostDisplay = (props) => {
       .get(`http://192.168.54.34:3000/api/comment/64b83c3afaa9a17418342820`)
       .then((response) => {
         setCommentResult(response.data);
-        console.log("Data sent successfully:", response.data);
+
       })
       .catch((error) => {
         console.error("Error sending data:", error);

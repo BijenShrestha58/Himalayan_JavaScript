@@ -34,12 +34,6 @@ export const Home = () => {
 
   return (
     <>
-      <Nav
-        open={() => {
-          setLoginIsVisible(true);
-        }}
-      />
-
       <div className="home">
         <div className="banner">
           <h1>Welcome to our Website!</h1>
@@ -81,7 +75,7 @@ export const Home = () => {
         close={() => {
           setRegisterIsVisible(false);
         }}
-      />
+      ></RegisterForm>
     </>
   );
 };
