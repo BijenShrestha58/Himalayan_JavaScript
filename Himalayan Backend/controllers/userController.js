@@ -40,7 +40,6 @@ const registerUser = async (req,res)=>{
 }
 
 const loginUser = async (req,res)=>{
-    console.log('Logged in')
     try{
         const {email,password} = req.body
         const {error} = validateLogin(req.body)

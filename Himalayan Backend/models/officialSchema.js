@@ -57,7 +57,7 @@ const Official= mongoose.model('Official',new mongoose.Schema({
         required:true,
         enum:["Mayor","Ward Officer"]
     },
-    posts:[{type:mongoose.Schema.Types.ObjectId,ref:"Post"}]
+    posts:[{type:mongoose.Schema.Types.ObjectId,ref:"officialPost"}]
 }))
 
 exports.Official = Official;

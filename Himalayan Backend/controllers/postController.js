@@ -3,17 +3,16 @@ const {Post} = require('../models/postSchema')
 const {User} = require('../models/userSchema')
 
 const createPost =async (req,res)=>{
-    console.log('Post Created')
     try{
         let post = new Post(req.body)        
-        await User.findById(post.author).then((user)=>{
-            user.posts.push(post);
-            post.wardNumber=user.wardNumber;
-            user.save();
-            
-        }).catch((err)=>{ res.status(500).json({message:err.message});})
+        const user=await User.findById(post.author);
+        if(!user){return res.status(400).json({message:"asdsad"});}
+        user.posts.push(post);
+        post.wardNumber=user.wardNumber;
+        await user.save();
         post =await post.save()
-        res.status(200).send(post)
+        res.status(200).json(post)
+    console.log('Post Created')
     }catch(error){
         res.status(500).json({message:error.message})
     }
