@@ -1,0 +1,513 @@
+*{
+    color: #151515;
+}
+.fixed{
+  position:fixed;
+}
+.sticky{
+  position: sticky;
+}
+.nav{
+    width: 100vw;
+    height: 70px;
+    top: 0;
+    background-color: rgba(0,0,0,.1);
+    backdrop-filter: blur(3px);
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    display: flex;
+    align-items: center;
+    padding: 0 5vw;
+    z-index:99;
+
+    .nav-items{
+        display:flex;
+        margin-left: 20vw;
+        height: 100%;
+        align-items: center;
+        .nav-item-link{
+            height:100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            &.active{
+                .nav-item{
+                    background-color:  rgba(0,0,0,.4);
+                    color:white;
+                }
+            }
+            .nav-item{
+                margin: 0 12px;
+                background-color: rgba(0,0,0,.1);
+                border: none;
+                border-radius: 6px;
+                padding:0 12px;
+                height: 70%;
+                font-family: 'Roboto', sans-serif;
+                font-size: 1em;
+                &:hover{
+                    transition: .3s;
+                    background-color: rgba(0,0,0,.4);
+                    color:white;
+                    cursor: pointer;
+                }
+            }
+        }    
+    }
+    .login-button{
+        background-color: rgba(0,0,0,.1);
+        border: none;
+        border-radius: 6px;
+        width:5vw;
+        height: 50%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1em;
+        position: absolute;
+        right:5vw;
+        &:hover{
+            transition: .3s;
+            background-color: rgba(0,0,0,.4);
+            color:white;
+            cursor: pointer;
+        }
+    }
+}
+
+// RedditPostCard.scss
+
+.card-area{
+  width:100vw;
+  padding:0vw  32vw;
+
+.reddit-post-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+    width: 100%;
+  
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+  
+    .title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      transition: color 0.2s ease;
+  
+      &:hover {
+        color: #0079d3; // Hover color
+      }
+    }
+    .description
+    {
+      font-size: 12px;
+      ;
+    }
+    .vote {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto; /* Pushes the vote section to the bottom */
+      cursor: pointer;
+      transition: transform 0.2s ease;
+  
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 24px;
+        color: #777;
+        transition: color 0.2s ease;
+  
+        &.upvote.active,
+        &.downvote.active {
+          color: #0079d3; // Active color
+        }
+      }
+  
+      .vote-count {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 5px;
+      }
+    }
+  
+    .stats {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+  
+      .comments {
+        display: flex;
+        align-items: center;
+  
+        .comments-icon {
+          margin-right: 5px;
+          font-size: 18px;
+        }
+      }
+  
+      .votes {
+        display: flex;
+        align-items: center;
+  
+        .vote-icon {
+          margin-right: 5px;
+          font-size: 18px;
+          color: #777;
+          transition: color 0.2s ease;
+  
+          &.active {
+            color: #0079d3; // Active color
+          }
+        }
+  
+        .vote-icon:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+.dialog-box-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    width: 100vw;
+    z-index: 9999;
+    align-items: flex-start;
+    justify-content: center;
+    .dialog-box-backdrop {
+      background-color: rgba(0, 0, 0, 0.61);
+      transition: 0.5s;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      &:hover {
+        backdrop-filter: blur(3px);
+      }
+    }
+    .dialog-box {
+      position: relative;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20vh;
+      height: 60%;
+      width: 40%;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px gray solid;
+      border-radius: 8px;
+      box-shadow: 2px 2px 2px gray;
+    //   overflow: auto;
+      .title {
+        margin-bottom: 32px;
+        text-align: center;
+      }
+  
+      form {
+        width: 90%;
+        .inputs {
+          width: 100%;
+          margin-bottom: 48px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .box {
+            display: flex;
+            height: 48px;
+            width: 80%;
+            margin-top: 16px;
+            .icon {
+              height: 100%;
+              width: 15%;
+              background-color: teal;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              &:hover{
+                background-color: rgb(0, 91, 91);
+                transition: 0.3s;
+                cursor: pointer;
+              }
+            }
+            .text {
+              height: 100%;
+              width: 85%;
+            }
+            input:focus::placeholder {
+              opacity: 0;
+            }
+          }
+        }
+  
+        button {
+          background-color: teal;
+          color: white;
+          margin-left: 10%;
+          height: 32px;
+          width: 100px;
+          border: none;
+          border-radius: 4px;
+        }
+        button:hover {
+          background-color: rgb(0, 91, 91);
+          transition: 0.3s;
+          cursor: pointer;
+        }
+
+        button2 {
+          background-color: orange;;
+          color: white;
+          margin-left: 10%;
+          height: 32px;
+          width: 100px;
+          border: none;
+          border-radius: 4px;
+        }
+        button2:hover {
+          background-color:orange;
+          transition: 0.3s;
+          cursor: pointer;
+        }
+      }
+      span{
+        color:blue;
+        text-decoration: underline;
+        cursor: pointer;
+        transition: .3s;
+        &:hover{
+          color:rgb(0, 0, 200);
+        }
+      }
+      .close {
+        height: 16px;
+        width: 16px;
+        top: 8px;
+        right: 8px;
+        position: absolute;
+        cursor: pointer;
+        img {
+          height: 100%;
+          width: 100%;
+          transition: 0.2s;
+          &:hover {
+            filter: brightness(2);
+          }
+        }
+      }
+    }
+  }
+
+.announcements-list{
+
+  .announcements
+  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .card{
+      width:90%;
+      padding:32px 10%;
+      background-color: rgba(0,0,0,.1);
+      backdrop-filter: blur(3px);
+      box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+      margin: 8px 8px;
+      border-radius: 4px;;
+    }
+  }
+}
+  .slide-in {
+    animation: slide-in 0.3s ease-in-out ;
+  }
+  @keyframes slide-in {
+    from {
+      top: -80vh;
+    }
+    to {
+      top: 0vh;
+    }
+  }
+
+.home{
+  .banner {
+      background-color: #54eeb8; // Your desired background color for the banner
+      color: #fff; // Text color
+      text-align: center;
+      padding-top: 70px;
+      height:50vh;
+      width: 100vw;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      background-image: url("/assets/banner.webp");
+      background-size: cover;
+      background-origin: bottom;
+      background-attachment: fixed;
+      animation: zoom-in-out 15s ease-in-out infinite alternate;
+    
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    
+      p {
+        font-size: 18px;
+      }
+    }
+    .information-section
+    {
+      display: flex;
+      width: 100vw;
+      justify-content: space-between;
+
+      .news,.hot-posts{
+        width: calc(50vw - 8px);
+        height:60vh;
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        overflow: auto;
+        .title-box{
+          padding:20px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+          .title{
+            font-size:24px;
+            font-weight: bold;
+            text-align: center;
+          }
+        }
+          .card{
+            width: 100%;
+            height:30vh;
+            margin-bottom:8px;
+            border-radius: 4px;
+            padding-top:5vh;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+            .card-title{
+              font-size: 24px;
+              font-weight: bold;
+              text-align: center;
+            }
+          }
+      }
+
+    }
+  }
+  
+// WhatsOnYourMind.scss
+
+.whats-on-your-mind {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+  
+    .tweet-input {
+      flex: 1;
+      resize: none;
+      border: none;
+      font-size: 16px;
+      padding: 5px;
+      margin-bottom: 10px;
+  
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 3px #0079d3;
+      }
+    }
+  
+    .post-button {
+      background-color: #0079d3;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      margin-left:90%;
+      width: 80px;
+      cursor: pointer;
+      font-size: 16px;
+  
+      &:hover {
+        background-color: #005ea1;
+      }
+  
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  // AddPost.scss
+
+.add-post-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .post-input {
+      min-height: 100px;
+      resize: none;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-family: Arial, sans-serif;
+    }
+  
+    .post-button {
+      padding: 8px 16px;
+      background-color: #1da1f2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+  
+      &:hover {
+        background-color: #1a91da;
+      }
+    }
+  }
+  
+  @keyframes zoom-in-out {
+    from{
+      background-size: 100%;
+    }
+    to{
+      background-size: 120%;
+    }
+  }
