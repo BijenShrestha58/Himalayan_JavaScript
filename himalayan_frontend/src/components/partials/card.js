@@ -3,7 +3,6 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import { PostDisplay } from "../modules/postdisplay";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const PostCard = ({
@@ -16,10 +15,13 @@ const PostCard = ({
   author,
   subforum,
 }) => {
+  const [postId, setPostId] = useState(id);
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [postIsVisible, setPostIsVisible] = useState(false);
-
+  const words = title.split(' ');
+  const titleWords = words.slice(0, 10);
+  const description=words.slice(10);
   const handleUpvote = () => {
     if (isUpvoted) {
       setIsUpvoted(false);
@@ -29,13 +31,18 @@ const PostCard = ({
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     setPostIsVisible(true);
-    console.log(id)
+
+    //console.log("E id:" + e.target.value);
+
     axios
-      .get(`http://192.168.54.34:3000/api/comment/64b83c3afaa9a17418342820`)
+      .get(`http://192.168.54.30:3000/api/post/${postId}`)
       .then((response) => {
-        console.log("Data sent successfully:", response.data);
+        console.log("Data sent successfully:", response.data.content);
+        setPostId(response.data._id);
+        console.log("postid: " + postId);
+        localStorage.setItem("postId", response.data._id);
       })
       .catch((error) => {
         console.error("Error sending data:", error);
@@ -53,24 +60,12 @@ const PostCard = ({
 
   return (
     <>
-      <div className="card">
-        <div className="vote">
-          <button
-            className={`upvote ${isUpvoted ? "active" : ""}`}
-            onClick={handleUpvote}
-          >
-            <ThumbUpIcon />
-          </button>
-          <span className="vote-count">{upvote}</span>
-          <button
-            className={`downvote ${isDownvoted ? "active" : ""}`}
-            onClick={handleDownvote}
-          >
-            <ThumbDownIcon />
-          </button>
-        </div>
+    <div className="card-area">
+      <div className="reddit-post-card">
+      
         <div className="content">
-          <h2 className="title">{title}</h2>
+          <div className="title">{titleWords}</div>
+          <div className="description">{description}</div>
           <div className="stats">
             <span onClick={handleClick} className="comments">
               <ChatBubbleIcon className="comments-icon" />
@@ -79,16 +74,19 @@ const PostCard = ({
             <span className="votes">
               <ThumbUpIcon
                 className={`vote-icon ${isUpvoted ? "active" : ""}`}
+                onClick={handleUpvote}
               />
               {upvote}{" "}
               <ThumbDownIcon
                 className={`vote-icon ${isDownvoted ? "active" : ""}`}
+                onClick={handleDownvote}
               />
               {downvote}
             </span>
           </div>
         </div>
       </div>
+    </div>
       <PostDisplay
         open={postIsVisible}
         close={() => {

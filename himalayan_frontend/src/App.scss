@@ -1,11 +1,16 @@
 *{
     color: #151515;
 }
+.fixed{
+  position:fixed;
+}
+.sticky{
+  position: sticky;
+}
 .nav{
     width: 100vw;
     height: 70px;
     top: 0;
-    position: sticky;
     background-color: rgba(0,0,0,.1);
     backdrop-filter: blur(3px);
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
@@ -67,10 +72,117 @@
     }
 }
 
+// RedditPostCard.scss
 
-.home{
+.card-area{
+  width:100vw;
+  padding: 0 10vw;
 
+.reddit-post-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+  
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+  
+    .title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      transition: color 0.2s ease;
+  
+      &:hover {
+        color: #0079d3; // Hover color
+      }
+    }
+    .description
+    {
+      font-size: 12px;
+      ;
+    }
+    .vote {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto; /* Pushes the vote section to the bottom */
+      cursor: pointer;
+      transition: transform 0.2s ease;
+  
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 24px;
+        color: #777;
+        transition: color 0.2s ease;
+  
+        &.upvote.active,
+        &.downvote.active {
+          color: #0079d3; // Active color
+        }
+      }
+  
+      .vote-count {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 5px;
+      }
+    }
+  
+    .stats {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+  
+      .comments {
+        display: flex;
+        align-items: center;
+  
+        .comments-icon {
+          margin-right: 5px;
+          font-size: 18px;
+        }
+      }
+  
+      .votes {
+        display: flex;
+        align-items: center;
+  
+        .vote-icon {
+          margin-right: 5px;
+          font-size: 18px;
+          color: #777;
+          transition: color 0.2s ease;
+  
+          &.active {
+            color: #0079d3; // Active color
+          }
+        }
+  
+        .vote-icon:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 }
+
+
+
+
 
 .dialog-box-screen{
     position: fixed;
@@ -224,4 +336,162 @@
       top: 0vh;
     }
   }
+
+.home{
+  .banner {
+      background-color: #54eeb8; // Your desired background color for the banner
+      color: #fff; // Text color
+      text-align: center;
+      padding-top: 70px;
+      height:50vh;
+      width: 100vw;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      background-image: url("/assets/banner.webp");
+      background-size: cover;
+      background-origin: bottom;
+      background-attachment: fixed;
+      animation: zoom-in-out 15s ease-in-out infinite alternate;
+    
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    
+      p {
+        font-size: 18px;
+      }
+    }
+    .information-section
+    {
+      display: flex;
+      width: 100vw;
+      justify-content: space-between;
+
+      .news,.hot-posts{
+        width: calc(50vw - 8px);
+        height:60vh;
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        overflow: auto;
+        .title-box{
+          padding:20px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+          .title{
+            font-size:24px;
+            font-weight: bold;
+            text-align: center;
+          }
+        }
+          .card{
+            width: 100%;
+            height:30vh;
+            margin-bottom:8px;
+            border-radius: 4px;
+            padding-top:5vh;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+            .card-title{
+              font-size: 24px;
+              font-weight: bold;
+              text-align: center;
+            }
+          }
+      }
+
+    }
+  }
   
+// WhatsOnYourMind.scss
+
+.whats-on-your-mind {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+  
+    .tweet-input {
+      flex: 1;
+      resize: none;
+      border: none;
+      font-size: 16px;
+      padding: 5px;
+      margin-bottom: 10px;
+  
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 3px #0079d3;
+      }
+    }
+  
+    .post-button {
+      background-color: #0079d3;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      margin-left:90%;
+      width: 80px;
+      cursor: pointer;
+      font-size: 16px;
+  
+      &:hover {
+        background-color: #005ea1;
+      }
+  
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  // AddPost.scss
+
+.add-post-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .post-input {
+      min-height: 100px;
+      resize: none;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-family: Arial, sans-serif;
+    }
+  
+    .post-button {
+      padding: 8px 16px;
+      background-color: #1da1f2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+  
+      &:hover {
+        background-color: #1a91da;
+      }
+    }
+  }
+  
+  @keyframes zoom-in-out {
+    from{
+      background-size: 100%;
+    }
+    to{
+      background-size: 120%;
+    }
+  }

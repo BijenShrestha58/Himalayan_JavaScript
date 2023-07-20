@@ -2,10 +2,10 @@ import { PostForm } from "../components/modules/addpost"
 import axios from "axios";
 import {useState, useEffect} from "react";
 export const Forums=(props)=>{
-    const localhost="192.168.54.34";
+    const localhost="192.168.54.30";
     const createPost = async(newpost)=>{
         try{
-         const res = await axios.post(`http://${localhost}:3000/api/officialpost/news`,newpost);
+         const res = await axios.post(`http://${localhost}:3000/api/post/`,newpost);
          await loadPosts();
         }catch(e){
          console.log(e);
