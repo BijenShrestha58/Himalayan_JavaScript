@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 const User= mongoose.model('User',new mongoose.Schema({
-    verified:Boolean,
+    verified:{type:Boolean,default:false},
     firstName:{
         type:String,
         required:true,
