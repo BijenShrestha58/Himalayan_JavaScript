@@ -4,8 +4,9 @@ const mongoose=require("mongoose");
 const userRoutes=require("./routes/userRoutes")
 const postRoutes=require("./routes/postRoutes")
 const commentRoutes=require("./routes/commentRoutes")
+const officialRoutes=require("./routes/officialRoutes")
 const voteRoutes=require("./routes/voteRoutes")
-const cors = require('cors')
+const cors = require('cors');
 
 
 const app=express();
@@ -23,6 +24,7 @@ app.use(cors({
 }));
 
 app.use('/api/users',userRoutes);
+app.use('/api/official',officialRoutes)
 app.use('/api/post',postRoutes);
 app.use('/api/comment',commentRoutes);
 app.use('/api/vote',voteRoutes);

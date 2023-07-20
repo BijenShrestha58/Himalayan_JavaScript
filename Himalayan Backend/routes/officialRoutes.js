@@ -1,8 +1,7 @@
 const express=require("express");
 const router=express.Router();
-const {User}=require("../models/userSchema");
-const {getOfficials,getOfficial,addOfficial} = require('../controllers/userController')
-const {Official}=require("../models/officialSchema");
+const {getOfficials,getOfficial,addOfficial,sendToMayor} = require('../controllers/officialController')
+
 
 //Get
 router.get('/',getOfficials)
@@ -14,15 +13,8 @@ router.get('/:id',getOfficial);
 router.post('/create',addOfficial);
 
 
-// //delete
-// router.get('/:id',async (req,res)=>{
-//     try {
-        
-//     } catch (error) {
-//         res.status(500).json({message:error.message})
-//     }
-// })
-
+//expired (call during every login)
+router.post('/expired',sendToMayor)
 
 
 module.exports=router;
