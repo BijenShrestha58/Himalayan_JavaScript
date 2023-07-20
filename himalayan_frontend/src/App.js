@@ -3,15 +3,15 @@ import './App.scss';
 import ForumCard from './components/partials/card';
 import  {Home} from "./pages/home";
 import { Route, Routes } from "react-router";
-import {Nav} from "./components/common/nav";
 import Layout from './pages/layout';
-
+import { AnnouncementPage } from './pages/announcements';
+import Forum from './pages/forums';
 const App = () => {
   const routes = [
     { path: "", element: <Home/> },
     { path: "home", element: <Home/> },
-    // { path: "forums", element: <ForumLayout /> },
-    // { path: "announcements", element: <AnnouncementLayout /> },
+     { path: "forums", element: <Forum /> },
+    { path: "announcements", element: <AnnouncementPage /> },
   ];
   return (
     <>

@@ -24,12 +24,15 @@ const AddPost = (props) => {
       .catch((error) => {
         console.error("Error fetching data:", error.message);
       });
-  };
+    };
 
-  const handleChange = (event) => {
-    setPostData(event.target.value);
-  };
-
+      const handleChange=(e)=>
+      { 
+          setPostData(e.target.value)
+      }
+      
+  
+   
   return (
     <div className="add-post-container">
       <textarea
@@ -37,22 +40,16 @@ const AddPost = (props) => {
         placeholder="What's happening?"
         value={postData}
         onChange={handleChange}
+        ></textarea>
 
-        /*
-        {(e) => {
-          setPostData({
-            ...postData,
-            [e.target.content]: e.target.value,
-          });
-        }}
-      */
-      />
+     
       <button className="post-button" onClick={handleSubmit}>
         Post
       </button>
       );
     </div>
   );
-};
+
+}
 
 export default AddPost;

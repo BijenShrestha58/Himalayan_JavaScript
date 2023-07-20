@@ -32,7 +32,7 @@ const Layout = (props) => {
   const registerUser = async (user) => {
     try {
       const res = await axios.post(
-        "http://192.168.54.34:3000/api/users/register",
+        "http://192.168.54.30:3000/api/users/register",
         user
       );
       {
