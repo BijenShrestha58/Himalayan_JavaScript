@@ -1,5 +1,6 @@
 const Joi = require('joi')
 const {Official} = require('../models/officialSchema')
+const {Post} = require('../models/postSchema')
 
 const getOfficials = async (req,res)=>{
     try {
@@ -33,13 +34,23 @@ const addOfficial = async (req,res)=>{
     }
 }
 
-// const login = async (req,res)=>{
-//     try{
-
-//     }catch(error){
-
-//     }
-// }
+const sendToMayor= async (req,res)=>{
+    const{postId}=req.body;
+    try {
+        const post=await Post.findById(postId);
+        if(!post){return res.status(400).send("Post not found!")}
+        const currentTime = Date.now();
+        const createdTime=post.createdAt.getTime();
+        const timeElapsedInSeconds = Math.floor((currentTime - createdTime) / 1000);
+        const timeElapsedInDays = Math.floor(timeElapsedInSeconds / 86400); 
+        if(timeElapsedInDays>30){
+            return res.status(200).json(post);
+        }
+        res.status(200).json({message:"Issue Has not Expired!"})
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+}
 
 function validateOfficial(official){
     const schema = Joi.object({
@@ -62,3 +73,4 @@ function validateOfficial(official){
 exports.getOfficials = getOfficials
 exports.getOfficial = getOfficial
 exports.addOfficial = addOfficial
+exports.sendToMayor= sendToMayor
