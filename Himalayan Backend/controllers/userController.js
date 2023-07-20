@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
-const mongoose = require('mongoose')
 const {User} = require('../models/userSchema')
 
 
@@ -14,7 +13,6 @@ const getUsers = async (req,res)=>{
 }
 const getUser = async (req,res)=>{
     try {
-        if(!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send('The user with the given ID was not found')
         const user = await User.findById(req.params.id)
         if(!user) return res.status(404).send('The user with the given ID was not found')
 
