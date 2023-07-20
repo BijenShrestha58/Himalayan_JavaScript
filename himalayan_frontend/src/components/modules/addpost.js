@@ -1,54 +1,30 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-const AddPost = (props) => {
-  const [result, setResult] = useState("");
-  const author = localStorage.getItem("userId");
-  const [postData, setPostData] = useState("");
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Implement the logic to submit the new post (e.g., send data to the server)
-    // console.log("New Post Content:", post);x
-    // Clear the input field after submitting
+import { useState } from "react";
+import DialogBox from "../common/dialogbox";
 
-    console.log(postData);
-    axios
-      .post("http://192.168.54.30:3000/api/post/create", {
-        content: postData,
-        author: author,
-      })
-      .then((response) => {
-        //setPostData(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error.message);
-      });
-    };
+export const PostForm  =(props)=>{
+    const [post,setPost] = useState({ wardNumber:'', content: '', author:''});
+    const submitForm=async (e)=>{
+        e.preventDefault();
+        await props.submit(post)
+    }
 
-      const handleChange=(e)=>
-      { 
-          setPostData(e.target.value)
-      }
-      
-  
-   
-  return (
-    <div className="add-post-container">
-      <textarea
-        className="post-input"
-        placeholder="What's happening?"
-        value={postData}
-        onChange={handleChange}
-        ></textarea>
-
-     
-      <button className="post-button" onClick={handleSubmit}>
-        Post
-      </button>
-    </div>
-  );
-
+    const formHandler=(e)=>{
+        setPost({
+            ...post,
+            [e.target.name]: e.target.value
+        })
+    }
+    return (
+    <>
+    {props.open &&
+    <DialogBox open={props.open} close={props.close}>
+    <form onSubmit={submitForm}>
+        <input name="content" placeholder="Enter content" required onChange={formHandler}/>
+        <input name="author" placeholder="Enter author" required onChange={formHandler}/>
+        <button type="submit">Submit</button>
+    </form>
+    </DialogBox>
+    }
+    </>
+    )
 }
-
-export default AddPost;

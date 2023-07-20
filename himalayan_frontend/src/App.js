@@ -5,7 +5,7 @@ import  {Home} from "./pages/home";
 import { Route, Routes } from "react-router";
 import Layout from './pages/layout';
 import { AnnouncementPage } from './pages/announcements';
-import Forum from './pages/forums';
+import {Forum} from './pages/forums';
 const App = () => {
   const routes = [
     { path: "", element: <Home/> },
