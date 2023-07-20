@@ -359,13 +359,20 @@
   }
   .information-section
   {
+    display: flex;
+    width: 100vw;;
     .news,.hot-posts{
       width: 50vw;
-      .card{
-        
+      .title-box{
+        width:calc(100% - 16px);
+        border-radius: 4px;
+        padding:20px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin:0 8px;
         .title{
           font-size:24px;
           font-weight: bold;
+          text-align: center;
         }
         .description{
           font-size: 18px;
