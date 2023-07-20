@@ -8,10 +8,11 @@ const createPost =async (req,res)=>{
         await User.findById(post.author).then((user)=>{
             user.posts.push(post);
             post.wardNumber=user.wardNumber;
-            return user.save();
+            user.save();
+            
         }).catch((err)=>{ res.status(500).json({message:err.message});})
-        post = await post.save()
-        res.send(post)
+        post =await post.save()
+        res.status(200).send(post)
     }catch(error){
         res.status(500).json({message:error.message})
     }

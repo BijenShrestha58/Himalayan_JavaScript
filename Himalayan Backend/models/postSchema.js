@@ -3,7 +3,7 @@ const postSchema= new mongoose.Schema({
     content:{type:String,required:true,trim:true},
     author:{type:mongoose.Schema.Types.ObjectId,ref:"User"},
     comments:[{type:mongoose.Schema.Types.ObjectId,ref:"Comment"}],
-    wardNumber:Number,
+    wardNumber:{type:String,required:true,trim:true},
     numComments:Number,
     upVotes:Number,
     upVotedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],

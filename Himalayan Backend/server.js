@@ -11,8 +11,8 @@ const cors = require('cors')
 const app=express();
 
 // Setup connections to database
-console.log(process.env.DATABASE_URL)
-mongoose.connect(process.env.DATABASE_URL)
+//console.log(process.env.DATABASE_URL)
+mongoose.connect('mongodb://127.0.0.1/hjdb')
     .then(()=>console.log('Connected to MongoDB...'))
     .catch(err => console.log('Could not connect to MongoDB...',err))
 

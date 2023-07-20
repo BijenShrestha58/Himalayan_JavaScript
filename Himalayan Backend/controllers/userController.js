@@ -33,7 +33,7 @@ const registerUser = async (req,res)=>{
         user.password = hashPassword
 
         user = await user.save()
-        res.send(user)
+        res.status(200).send(user)
     } catch (error) {
         res.status(500).json({message:error.message})
     }
