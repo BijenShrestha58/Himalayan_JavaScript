@@ -46,12 +46,12 @@ const updatedownVotes= async (req,res)=>{
             return res.status(404).send('The post with the given ID was not found')
         }
         if(post.downVotedBy.includes(userId)){
-            return res.status(400).json({message:"upVoteId already exists."});
+            return res.status(400).json({message:"downVoteId already exists."});
         }
         post.downVotedBy.push(userId);
         post.downVotes+=1;
         await post.save();
-        return res.status(200).json({message:"done"});
+        return res.status(200).json({message:"Successful"});
         
     }
     catch(error){

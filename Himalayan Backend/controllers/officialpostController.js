@@ -5,13 +5,13 @@ const { Post } = require('../models/postSchema');
 
 
 const addOfficialNews= async (req,res)=>{
-    console.log("Official new init")
+    console.log("New Official Attempt")
     try{
         console.log(req.body)
         let officialpost =new officialPost(req.body);
         const official=await Official.findById(officialpost.author)
         if(!official){
-            return res.status(200).json({message:officialpost})
+            return res.status(404).json({message:'Official not found'})
         }
         official.posts.push(officialpost);
         officialpost.wardNumber=official.wardNumber;
@@ -34,18 +34,18 @@ const getOfficialPosts=async(req,res)=>{
 
 const editOfficialPost=async(req,res)=>{
     try{
-        if(!mongoose.Types.ObjectId.isValid(req.id)) return res.status(404).send('The ID is invalid')
-        const post = await Post.findById(req.body.postId)
+        const {postId,content} = req.body
+        const post = await Post.findByIdAndUpdate(postId,{content:content},{new:true})
         if(!post) return res.status(404).send('Post not found')
-
-
+        res.send(post)
+        
     }catch(error){
         res.status(400).send(error.message)
     }
 }
 const editOfficialPostPerm=async(req,res)=>{
     try{
-        if(!mongoose.Types.ObjectId.isValid(req.id)) return res.status(404).send('The ID is invalid')
+        
         const {author,postId} = req.body
         
         const post = await Post.findById(postId)

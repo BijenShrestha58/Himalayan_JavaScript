@@ -1,6 +1,9 @@
 const Joi = require('joi')
 const {Official} = require('../models/officialSchema')
+const {User} = require('../models/userSchema')
 const {officialPost} = require('../models/officialpostSchema')
+
+
 const getOfficials = async (req,res)=>{
     try {
         const official = await Official.find().sort('firstName');
@@ -23,7 +26,12 @@ const addOfficial = async (req,res)=>{
     try {
         const {error}  = validateOfficial(req.body)
         if(error) return res.status(400).send(error.details[0].message)
+           
+        if(await User.findOne({email:req.body.email}))  return res.status(401).json({message:"Email already exists"})
 
+
+        if(await User.findOne({citizenshipNumber:req.body.citizenshipNumber})) return res.status(401).json({message:"Citizenship already exists"})
+        
         let official = new Official(req.body)
 
         official = await official.save()

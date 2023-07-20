@@ -10,6 +10,8 @@ router.post('/news',addOfficialNews)
 router.get('/all',getOfficialPosts)
 
 // [/api/officialpost/edit] Edit a particular News
-router.put('/editPerm',editOfficialPostPerm)
+router.post('/editPerm',editOfficialPostPerm)
+
+// [/api/officialpost/delete] Delete a particular News
 
 module.exports=router
