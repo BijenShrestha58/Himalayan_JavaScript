@@ -58,6 +58,15 @@ const updatedownVotes= async (req,res)=>{
         res.status(500).json({message:error.message})
     }
 }
+const getPostById=async (req,res)=>{
+    try {
+        const post=await Post.findById(req.params.id)
+        if(!post){return res.status(400).send("No such Posts!")}
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+}
 const getPosts = async (req,res)=>{
     //console.log('here')
     try{
@@ -81,6 +90,7 @@ const getWardPosts = async(req,res)=>{
 }
 
 exports.createPost = createPost
+exports.getPostById=getPostById
 exports.getPosts = getPosts
 exports.updateupVotes=updateupVotes
 exports.updatedownVotes=updatedownVotes
