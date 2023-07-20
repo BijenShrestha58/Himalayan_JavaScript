@@ -1,7 +1,9 @@
 const Joi = require('joi')
 const {Official} = require('../models/officialSchema')
 const {User} = require('../models/userSchema')
-const {officialPost} = require('../models/officialpostSchema')
+const {officialPost} = require('../models/officialPostSchema')
+const bcrypt = require('bcrypt')
+
 
 
 const getOfficials = async (req,res)=>{
@@ -22,23 +24,64 @@ const getOfficial = async (req,res)=>{
         res.status(400).json({message:error.message})
     }
 }
-const addOfficial = async (req,res)=>{
+const registerOfficial = async (req,res)=>{
     try {
         const {error}  = validateOfficial(req.body)
         if(error) return res.status(400).send(error.details[0].message)
            
         if(await User.findOne({email:req.body.email}))  return res.status(401).json({message:"Email already exists"})
 
-
         if(await User.findOne({citizenshipNumber:req.body.citizenshipNumber})) return res.status(401).json({message:"Citizenship already exists"})
         
         let official = new Official(req.body)
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(official.password,salt)
+        official.password = hashPassword
 
         official = await official.save()
         res.send(official)
     } catch (error) {
         res.status(500).json({message:error.message})
     }
+}
+
+const loginOfficial = async (req,res)=>{
+    try{
+        const {email,password} = req.body
+        const {error} = validateLogin(req.body)
+        if(error) return res.status(401).send(error.details[0].message)
+        
+        const official =await Official.findOne({email: email})
+        if(!official) return res.status(401).send('Invalid Credentials')
+        
+        const isMatch = await bcrypt.compare(password,official.password)
+        if(!isMatch) return res.status(401).send('Invalid Credentials')
+        console.log('Login Successful')
+        res.status(200).json({
+            success: true,
+            message: "Logedin Successfully",
+            officialId: official._id,
+            firstName: official.firstName,
+            middleName:official.middleName,
+            lastName: official.lastName,
+            email: official.email,
+            phoneNumber: official.phoneNumber,
+            citizenshipNumber: official.citizenshipNumber,
+            DOB:official.DOB,
+            wardNumber: official.wardNumber,
+            position: official.position,
+            gender: official.gender                        
+        })  
+    }catch(error){
+        res.status(500).json({message:error.message})
+    }
+}
+function validateLogin(official){
+    const schema = Joi.object({
+        email: Joi.string().required(),
+        password: Joi.string().required()
+    })
+    return schema.validate(official)
 }
 
 const sendToMayor= async (req,res)=>{
@@ -87,5 +130,6 @@ function validateOfficial(official){
 
 exports.getOfficials = getOfficials
 exports.getOfficial = getOfficial
-exports.addOfficial = addOfficial
+exports.registerOfficial = registerOfficial
 exports.sendToMayor= sendToMayor
+exports.loginOfficial = loginOfficial

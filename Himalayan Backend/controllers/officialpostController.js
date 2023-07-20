@@ -1,4 +1,4 @@
-const {officialPost} = require('../models/officialpostSchema')
+const {officialPost} = require('../models/officialPostSchema')
 const {Official} = require('../models/officialSchema')
 const mongoose=require('mongoose');
 const { Post } = require('../models/postSchema');
