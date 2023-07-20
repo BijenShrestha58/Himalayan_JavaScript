@@ -4,12 +4,13 @@ const {User} = require('../models/userSchema')
 
 const createPost =async (req,res)=>{
     try{
-        let post = new Post(req.body)
-        post = await post.save()
-        await User.findById(post.author).then(user=>{
+        let post = new Post(req.body)        
+        await User.findById(post.author).then((user)=>{
             user.posts.push(post);
+            post.wardNumber=user.wardNumber;
             return user.save();
-        }).catch(err=>{ res.status(500).json({message:err.message});})
+        }).catch((err)=>{ res.status(500).json({message:err.message});})
+        post = await post.save()
         res.send(post)
     }catch(error){
         res.status(500).json({message:error.message})
@@ -66,7 +67,16 @@ const getPosts = async (req,res)=>{
         res.status(500).json({message:error.message})
     }
 }
-
+/*
+const sendHigher=async(req,res)=>{
+    try{
+        const {timeElapsed}=
+    }
+    catch(error){
+        res.status(500).json({message:error.message})
+    }
+}
+*/
 exports.createPost = createPost
 exports.getPosts = getPosts
 exports.updateupVotes=updateupVotes
