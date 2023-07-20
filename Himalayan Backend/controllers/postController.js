@@ -66,8 +66,20 @@ const getPosts = async (req,res)=>{
         res.status(500).json({message:error.message})
     }
 }
+const getWardPosts = async(req,res)=>{
+    try{
+        console.log(req.params.wardNumber)
+        const post = await Post.find({wardNumber:req.params.wardNumber})
+        console.log(post)
+        if(!post) return res.status(404).send("No posts found")
+        res.send(post)
+    }catch(error){
+        res.status(500).send("Error while getting ward posts",error)
+    }
+}
 
 exports.createPost = createPost
 exports.getPosts = getPosts
 exports.updateupVotes=updateupVotes
 exports.updatedownVotes=updatedownVotes
+exports.getWardPosts = getWardPosts
