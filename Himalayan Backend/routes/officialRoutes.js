@@ -11,7 +11,7 @@ router.get('/',getOfficials)
 router.get('/:id',getOfficial);
 
 //patch
-router.post('/',addOfficial);
+router.post('/create',addOfficial);
 
 
 // //delete

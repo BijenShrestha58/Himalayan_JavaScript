@@ -3,6 +3,7 @@ const {Post} = require('../models/postSchema')
 const {User} = require('../models/userSchema')
 
 const createPost =async (req,res)=>{
+    console.log('Post Created')
     try{
         let post = new Post(req.body)        
         await User.findById(post.author).then((user)=>{

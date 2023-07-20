@@ -40,6 +40,7 @@ const registerUser = async (req,res)=>{
 }
 
 const loginUser = async (req,res)=>{
+    console.log('Logged in')
     try{
         const {email,password} = req.body
         const {error} = validateLogin(req.body)
@@ -50,7 +51,7 @@ const loginUser = async (req,res)=>{
         
         const isMatch = await bcrypt.compare(password,user.password)
         if(!isMatch) return res.status(401).send('Invalid Credentials')
-
+        console.log('Login Successful')
         res.status(200).json({
             success: true,
             message: "Logedin Successfully",
