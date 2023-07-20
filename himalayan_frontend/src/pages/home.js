@@ -6,10 +6,11 @@ import { Nav } from "../components/common/nav";
 import addPost from "../components/modules/addpost";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import AddPost from "../components/modules/addpost";
 import { PostDisplay } from "../components/modules/postdisplay";
 
 export const Home = () => {
-  const [results, setResults] = useState([]);
+  const [result, setResult] = useState([]);
 
   const [loginIsVisible, setLoginIsVisible] = useState(false);
 
@@ -18,8 +19,7 @@ export const Home = () => {
     axios
       .get("http://192.168.54.34:3000/api/post")
       .then((response) => {
-        setResults(response.data);
-        console.log(results);
+        setResult(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -31,17 +31,6 @@ export const Home = () => {
     setLoginIsVisible(false);
     setRegisterIsVisible(true);
   };
-
-  const mappedData = results.map((results) => ({
-    id: results._id,
-    title: results.content,
-    upvote: results.upVote,
-    downvote: results.downVote,
-    comments: results.comment,
-    numComments: results.numComments,
-    author: results.author,
-    subforum: results.subForum,
-  }));
 
   return (
     <>
@@ -58,18 +47,21 @@ export const Home = () => {
         </div>
         <addPost />
 
-    
+        <AddPost />
+
+        {result.map((result) => (
           <PostCard
-            id={mappedData.id}
-            title={mappedData.content}
-            upvote={mappedData.upVote}
-            downvote={mappedData.downVote}
-            comments={mappedData.comment}
-            numComments={mappedData.numComments}
-            author={mappedData.author}
-            subforum={mappedData.subForum}
+            id={result.id}
+            title={result.content}
+            upvote={result.upVote}
+            downvote={result.downVote}
+            comments={result.comment}
+            numComments={result.numComments}
+            author={result.author}
+            subforum={result.subForum}
           />
-       
+        ))}
+
         <LoginForm
           open={loginIsVisible}
           close={() => {
