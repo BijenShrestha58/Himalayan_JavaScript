@@ -18,6 +18,18 @@ const createPost =async (req,res)=>{
     }
 }
 
+const getHighestUpVotePost = async (req,res)=>{
+    try{
+        const posts =await Post.find().sort({upVotes:-1}).limit(3)
+        if(!posts) return res.status(404).json({message: "No posts found"})
+        console.log(posts)
+        return res.status(200).send(posts)
+
+    }catch(error){
+        return res.status(500).json({message: "Error while retrieving Highest Upvote posts"})
+    }
+}
+
 const updateupVotes= async (req,res)=>{
     try{
         const {userId,postId}=req.body;
@@ -95,3 +107,4 @@ exports.getPosts = getPosts
 exports.updateupVotes=updateupVotes
 exports.updatedownVotes=updatedownVotes
 exports.getWardPosts = getWardPosts
+exports.getHighestUpVotePost = getHighestUpVotePost
