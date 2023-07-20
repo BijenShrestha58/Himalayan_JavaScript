@@ -2,7 +2,6 @@ import { LoginForm } from "../components/modules/login";
 // import { RegisterForm } from "../components/modules/register";
 // import { Nav } from "../components/common/nav";
 import { useState } from "react";
-import { Post } from "../components/partials/post";
 import axios from "axios";
 
 export const Home=()=>{

@@ -2,12 +2,13 @@ import './App.scss';
 import  {Home} from "./pages/home";
 import { Route, Routes } from "react-router";
 import Layout from './pages/layout';
+import { Forums } from './pages/forums';
 import { AnnouncementPage } from './pages/announcements';
 const App = () => {
   const routes = [
     { path: "", element: <Home/> },
     { path: "home", element: <Home/> },
-    // { path: "forums", element: <ForumLayout /> },
+    { path: "forums", element: <Forums /> },
     { path: "announcements", element: <AnnouncementPage /> },
   ];
   return (

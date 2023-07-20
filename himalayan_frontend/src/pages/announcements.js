@@ -3,7 +3,7 @@ import axios from "axios";
 import {useState, useEffect} from "react";
 import { EditAnnouncementForm } from "../components/modules/editannouncement";
 export const AnnouncementPage=(props)=>{
-    const localhost="192.168.54.30";
+    const localhost="192.168.54.34";
     const createAnnouncement = async(newannouncement)=>{
         try{
          const res = await axios.post(`http://${localhost}:3000/api/officialpost/news`,newannouncement);
@@ -21,10 +21,14 @@ export const AnnouncementPage=(props)=>{
     const [announcements,setAnnouncements]=useState([]);
     
     useEffect(()=>{
+
         (async ()=>{
             await loadAnnouncements();
+            
         })();
     },[])
+
+    
 
     const loadAnnouncements = async ()=>{
         const res = await axios.get(`http://${localhost}:3000/api/officialpost/all`);
@@ -76,8 +80,12 @@ export const AnnouncementPage=(props)=>{
                 <div className={"card"} key={key}>
                     <div>{v.content}</div>
                     <p>{v.author}</p>
+
+                    {localStorage.getItem("userId") === v.author && <>
                     <button onClick={()=>loadSelectedAnnouncement(v._id)}>Edit Announcement</button>
                     <button onClick={()=>deleteAnnouncement(v._id)}>Delete Announcement</button>
+                    </>
+                    }
                     
                 </div>
             ))}

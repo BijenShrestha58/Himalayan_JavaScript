@@ -58,7 +58,6 @@ const AddPost = (props) => {
       <button className="post-button" onClick={handleSubmit}>
         Post
       </button>
-      );
     </div>
   );
 };
