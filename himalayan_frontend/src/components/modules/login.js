@@ -58,7 +58,8 @@ export const LoginForm = (props) => {
                   />
                 </div>
               </div>
-              <button type="submit">Submit</button>
+              <button type="submit">Login as User</button>
+              <button className="button2" type="submit">Login as Admin</button>
             </form>
             <br />
             Don't Have An Account?{" "}

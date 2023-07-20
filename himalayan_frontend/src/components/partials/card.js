@@ -19,9 +19,9 @@ const PostCard = ({
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [postIsVisible, setPostIsVisible] = useState(false);
-  const words = title.split(' ');
-  const titleWords = words.slice(0, 10);
-  const description=words.slice(10);
+  // const words = title.split(',');
+  // const titleWords = words.slice(0, 10);
+  // const description=words.slice(10);
   const handleUpvote = () => {
     if (isUpvoted) {
       setIsUpvoted(false);
@@ -31,12 +31,12 @@ const PostCard = ({
     }
   };
 
-  const handleClick = (e) => {
+  const handleClick =async (e) => {
     setPostIsVisible(true);
 
     //console.log("E id:" + e.target.value);
 
-    axios
+    await axios
       .get(`http://192.168.54.30:3000/api/post/${postId}`)
       .then((response) => {
         console.log("Data sent successfully:", response.data.content);
@@ -64,8 +64,7 @@ const PostCard = ({
       <div className="reddit-post-card">
       
         <div className="content">
-          <div className="title">{titleWords}</div>
-          <div className="description">{description}</div>
+          <div className="title">{title}</div>
           <div className="stats">
             <span onClick={handleClick} className="comments">
               <ChatBubbleIcon className="comments-icon" />

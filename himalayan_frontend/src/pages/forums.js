@@ -11,7 +11,7 @@ const Forums = () => {
     // Fetch data using Axios GET request
     axios.get("http://192.168.54.30:3000/api/post").then((response) => {
       setResult(response.data);
-    });
+    }).catch((e)=>{console.log(e)})
   }, []);
 
   return (

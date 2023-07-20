@@ -14,30 +14,20 @@ const Layout = (props) => {
     setLoginIsVisible(false);
     setRegisterIsVisible(true);
   };
-  const loginUser = async (user) => {
+  const loginUser =async (user) => {
     try {
-      const res = await axios.post(
+      const res =await axios.post(
         "http://192.168.54.30:3000/api/users/login",
         user
       );
-      {
-        console.log(res);
-      }
-      console.log(res.data.userId);
       localStorage.setItem("userId", res.data.userId);
     } catch (e) {
       console.log(e);
     }
   };
-  const registerUser = async (user) => {
+  const registerUser =  (user) => {
     try {
-      const res = await axios.post(
-        "http://192.168.54.30:3000/api/users/register",
-        user
-      );
-      {
-        console.log(res);
-      }
+      axios.post("http://192.168.54.30:3000/api/users/register",user);
     } catch (e) {
       console.log(e);
     }
