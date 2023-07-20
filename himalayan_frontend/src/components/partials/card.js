@@ -3,7 +3,6 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import { PostDisplay } from "../modules/postdisplay";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const PostCard = ({
@@ -16,6 +15,7 @@ const PostCard = ({
   author,
   subforum,
 }) => {
+  const [postId, setPostId] = useState(id);
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [postIsVisible, setPostIsVisible] = useState(false);
@@ -31,13 +31,18 @@ const PostCard = ({
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     setPostIsVisible(true);
-    console.log(id)
+
+    //console.log("E id:" + e.target.value);
+
     axios
-      .get(`http://192.168.54.34:3000/api/comment/64b83c3afaa9a17418342820`)
+      .get(`http://192.168.54.30:3000/api/post/${postId}`)
       .then((response) => {
-        console.log("Data sent successfully:", response.data);
+        console.log("Data sent successfully:", response.data.content);
+        setPostId(response.data._id);
+        console.log("postid: " + postId);
+        localStorage.setItem("postId", response.data._id);
       })
       .catch((error) => {
         console.error("Error sending data:", error);

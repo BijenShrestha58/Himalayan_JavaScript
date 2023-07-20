@@ -9,6 +9,7 @@ export const Nav=(props)=>{
         <NavLink to="/contacts" className="nav-item-link"><button className="nav-item">Contacts</button></NavLink>
         </div>
         <button className="login-button" onClick={props.open}>Login</button>
+        {/* set loginIsVisible to true  */}
     </div>
     )
 }
