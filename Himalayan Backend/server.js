@@ -4,6 +4,7 @@ const mongoose=require("mongoose");
 const userRoutes=require("./routes/userRoutes")
 const postRoutes=require("./routes/postRoutes")
 const commentRoutes=require("./routes/commentRoutes")
+const voteRoutes=require("./routes/voteRoutes")
 const cors = require('cors')
 
 
@@ -24,6 +25,7 @@ app.use(cors({
 app.use('/api/users',userRoutes);
 app.use('/api/post',postRoutes);
 app.use('/api/comment',commentRoutes);
+app.use('/api/vote',voteRoutes);
 
 const port = process.env.PORT || 3000
 app.listen(port,()=>{

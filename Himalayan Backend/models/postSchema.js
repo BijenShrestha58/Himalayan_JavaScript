@@ -5,7 +5,9 @@ const postSchema= new mongoose.Schema({
     comments:[{type:mongoose.Schema.Types.ObjectId,ref:"Comment"}],
     numComments:Number,
     upVotes:Number,
-    downVote:Number
+    upVotedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],
+    downVotedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],
+    downVotes:Number
 },{timestamps:true})
 const Post=mongoose.model('Post',postSchema);
 

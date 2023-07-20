@@ -3,6 +3,7 @@ const Joi = require('joi')
 const mongoose = require('mongoose')
 const {User} = require('../models/userSchema')
 
+
 const getUsers = async (req,res)=>{
     try {
         const user = await User.find()
@@ -92,7 +93,8 @@ function validateUser(user){
         DOB: Joi.string().required(),
         wardNumber: Joi.string().required(),
         gender: Joi.string().required(),   
-        posts: Joi.optional()     
+        posts: Joi.optional(),
+        postVotedId:Joi.optional()
     })
     return schema.validate(user)
 }
