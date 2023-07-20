@@ -3,17 +3,17 @@ const router=express.Router();
 const {getOfficials,getOfficial,addOfficial,sendToMayor} = require('../controllers/officialController')
 
 
-//Get
+// [/api/official/] Get all the details of officials
 router.get('/',getOfficials)
 
-//post 
+// [/api/official/:id] Get the info of a particular official
 router.get('/:id',getOfficial);
 
-//patch
+// [/api/official/create] Create a new official
 router.post('/create',addOfficial);
 
 
-//expired (call during every login)
+// Check for issue expiry (Called during every login)
 router.post('/expired',sendToMayor)
 
 

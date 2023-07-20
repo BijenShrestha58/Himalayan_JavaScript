@@ -3,11 +3,13 @@ const router=express.Router();
 //const {Post}=require("../models/postSchema");
 const {createPost,getPosts,getWardPosts} = require("../controllers/postController")
 
+// [/api/post] get all the existing posts
 router.get('/',getPosts)
 
-//router.get('/:id',getPost)
+// [/api/post/ward/:wardNumber] get all the posts of a particular ward
 router.get('/ward/:wardNumber',getWardPosts)
 
+// [/api/post/create] Create a post
 router.post('/create',createPost)
 
 //router.post("/overdue",sendHigher)

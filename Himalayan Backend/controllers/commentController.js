@@ -6,7 +6,6 @@ const {Post}=require("../models/postSchema");
 const getComment = async(req,res)=>{
     console.log('Comment Fetched')
     try{
-        if(!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send('The ID is invalid')
         const comment = await Comment.find({postId: req.params.id})
         if(!comment) return res.status(404).send('The Post with the given ID was not found')
         res.send(comment)

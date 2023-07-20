@@ -6,7 +6,7 @@ const createPost =async (req,res)=>{
     try{
         let post = new Post(req.body)        
         const user=await User.findById(post.author);
-        if(!user){return res.status(400).json({message:"asdsad"});}
+        if(!user){return res.status(400).json({message:"User with the current ID does not exist"});}
         user.posts.push(post);
         post.wardNumber=user.wardNumber;
         await user.save();
