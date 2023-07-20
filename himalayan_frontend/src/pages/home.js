@@ -1,9 +1,7 @@
 import PostCard from "../components/partials/card";
-
 import { LoginForm } from "../components/modules/login";
 import { RegisterForm } from "../components/modules/register";
 import { Nav } from "../components/common/nav";
-import addPost from "../components/modules/addpost";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AddPost from "../components/modules/addpost";
@@ -45,7 +43,6 @@ export const Home = () => {
           <h1>Welcome to our Website!</h1>
           <p>Discover amazing content and connect with others.</p>
         </div>
-        <addPost />
 
         <AddPost />
 

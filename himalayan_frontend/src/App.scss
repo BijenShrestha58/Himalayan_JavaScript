@@ -74,6 +74,9 @@
 
 // RedditPostCard.scss
 
+.card-area{
+  width:100vw;
+  padding: 0 10vw;
 
 .reddit-post-card {
     display: flex;
@@ -101,7 +104,11 @@
         color: #0079d3; // Hover color
       }
     }
-  
+    .description
+    {
+      font-size: 12px;
+      ;
+    }
     .vote {
       display: flex;
       align-items: center;
@@ -171,7 +178,7 @@
       }
     }
   }
-  
+}
 
 
 

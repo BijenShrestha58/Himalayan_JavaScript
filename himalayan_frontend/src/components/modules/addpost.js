@@ -30,7 +30,6 @@ const AddPost = () => {
       <button className="post-button" onClick={handleSubmit}>
         Post
       </button>
-      );
     </div>
   );
 };

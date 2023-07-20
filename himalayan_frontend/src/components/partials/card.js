@@ -19,7 +19,9 @@ const PostCard = ({
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [postIsVisible, setPostIsVisible] = useState(false);
-
+  const words = title.split(' ');
+  const titleWords = words.slice(0, 10);
+  const description=words.slice(10);
   const handleUpvote = () => {
     if (isUpvoted) {
       setIsUpvoted(false);
@@ -53,24 +55,12 @@ const PostCard = ({
 
   return (
     <>
+    <div className="card-area">
       <div className="reddit-post-card">
-        <div className="vote">
-          <button
-            className={`upvote ${isUpvoted ? "active" : ""}`}
-            onClick={handleUpvote}
-          >
-            <ThumbUpIcon />
-          </button>
-          <span className="vote-count">{upvote}</span>
-          <button
-            className={`downvote ${isDownvoted ? "active" : ""}`}
-            onClick={handleDownvote}
-          >
-            <ThumbDownIcon />
-          </button>
-        </div>
+      
         <div className="content">
-          <h2 className="title">{title}</h2>
+          <div className="title">{titleWords}</div>
+          <div className="description">{description}</div>
           <div className="stats">
             <span onClick={handleClick} className="comments">
               <ChatBubbleIcon className="comments-icon" />
@@ -79,16 +69,19 @@ const PostCard = ({
             <span className="votes">
               <ThumbUpIcon
                 className={`vote-icon ${isUpvoted ? "active" : ""}`}
+                onClick={handleUpvote}
               />
               {upvote}{" "}
               <ThumbDownIcon
                 className={`vote-icon ${isDownvoted ? "active" : ""}`}
+                onClick={handleDownvote}
               />
               {downvote}
             </span>
           </div>
         </div>
       </div>
+    </div>
       <PostDisplay
         open={postIsVisible}
         close={() => {
