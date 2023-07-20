@@ -357,6 +357,23 @@
       font-size: 18px;
     }
   }
+  .information-section
+  {
+    .news,.hot-posts{
+      width: 50vw;
+      .card{
+        
+        .title{
+          font-size:24px;
+          font-weight: bold;
+        }
+        .description{
+          font-size: 18px;
+        }
+      }
+    }
+
+  }
 
   
 // WhatsOnYourMind.scss

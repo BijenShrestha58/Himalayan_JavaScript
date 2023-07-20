@@ -26,30 +26,16 @@ export const Home = () => {
         <div className="banner">
           <h1>Welcome to our Website!</h1>
           <p>Discover amazing content and connect with others.</p>
+          <div className="information-section">
+            <div className="news">
+                
+            </div>
+            <div className="hot-posts">
+
+            </div>
+          </div>
         </div>
-
-        
-
-        <LoginForm
-          open={loginIsVisible}
-          close={() => {
-            setLoginIsVisible(false);
-          }}
-        />
       </div>
-      <LoginForm
-        open={loginIsVisible}
-        close={() => {
-          setLoginIsVisible(false);
-        }}
-        linkClick={registerclickHandler}
-      />
-      <RegisterForm
-        open={registerIsVisible}
-        close={() => {
-          setRegisterIsVisible(false);
-        }}
-      ></RegisterForm>
     </>
   );
 };
