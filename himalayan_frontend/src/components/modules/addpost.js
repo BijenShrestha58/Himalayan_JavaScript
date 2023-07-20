@@ -5,33 +5,25 @@ const AddPost = (props) => {
   const [result, setResult] = useState("");
   const author = localStorage.getItem("userId");
   const [postData, setPostData] = useState("");
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Implement the logic to submit the new post (e.g., send data to the server)
-    // console.log("New Post Content:", post);x                         
+    // console.log("New Post Content:", post);x
     // Clear the input field after submitting
 
-    // console.log(postData);
-    // axios
-    //   .post("https://192.168.54.30:3000/api/post/create", postData)
-    //   .then((response) => {
-    //     //setPostData(response.data);
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data:", error.message);
-    //   });
-
-    const result = await fetch("https://192.168.54.34:3000/api/post/create", {
-      method: "POST",
-      body: JSON.stringify(postData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await result.json();
-    console.log(data);
+    console.log(postData);
+    axios
+      .post("http://192.168.54.30:3000/api/post/create", {
+        content: postData,
+        author: author,
+      })
+      .then((response) => {
+        //setPostData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error.message);
+      });
   };
 
   const handleChange = (event) => {

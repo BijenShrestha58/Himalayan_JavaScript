@@ -17,7 +17,7 @@ const Layout = (props) => {
   const loginUser = async (user) => {
     try {
       const res = await axios.post(
-        "http://192.168.54.34:3000/api/users/login",
+        "http://192.168.54.30:3000/api/users/login",
         user
       );
       {
