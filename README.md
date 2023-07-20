@@ -21,18 +21,15 @@ Join us in shaping a better tomorrow, where citizens and local authorities colla
 
 # Features
 - Post issues directed towards respective wards
-<<<<<<< HEAD
 - Upvote posts
 - View posts with highest upvotes
 - Comment on posts
 - View updates
-=======
 - Point out most relevant problems of the community through user engagement and display them to the officials
 - Provide updates on local policy changes and other relevant information
 - Different user modes for citizens, local bodies, and admins
 - Fake account prevention using citizenship to verify identity
-- 
->>>>>>> 9e40033c6ef1d4314103108fcef1874026da5a71
+
 
 # Originality
 - It helps to send collective views of the citizens to the government
