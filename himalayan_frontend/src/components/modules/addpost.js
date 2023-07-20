@@ -49,5 +49,4 @@ const AddPost =  (props) => {
   );
 
 }
-
 export default AddPost;
