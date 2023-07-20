@@ -1,14 +1,13 @@
 const Joi = require('joi')
-const mongoose = require('mongoose')
 const {Comment} = require('../models/commentSchema')
 const {Post}=require("../models/postSchema");
 
 const getComment = async(req,res)=>{
-    console.log('Comment Fetched')
+    console.log('Fetching Comment..')
     try{
         const comment = await Comment.find({postId: req.params.id})
-        if(!comment) return res.status(404).send('The Post with the given ID was not found')
-        res.send(comment)
+        if(!comment){ return res.status(404).send('The Post with the given ID was not found')}
+        res.status(200).json(comment)
         
 
     }catch(error){

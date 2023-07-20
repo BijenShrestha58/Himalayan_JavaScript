@@ -8,7 +8,11 @@ const postSchema= new mongoose.Schema({
     upVotes:Number,
     upVotedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],
     downVotedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],
-    downVotes:Number
+    downVotes:Number,
+    tags:{
+        types:String,
+        enum:["Transportation","Health","Traffic","Energy","Economy","Politics","Education","Real Eatate","Office","Other"],
+    }
 },{timestamps:true})
 const Post=mongoose.model('Post',postSchema);
 
